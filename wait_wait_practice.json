@@ -1,0 +1,168 @@
+{
+  "name": "wait wait practice",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d68267cc-6e95-4b6b-8b94-3a7dd631935e",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "amount": 1.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "05fce496-89ab-4800-9bc7-46e39feb1488",
+      "name": "Wait",
+      "webhookId": "fca29908-706b-453b-8568-ba6038481e0b"
+    },
+    {
+      "parameters": {
+        "amount": 1.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        420,
+        0
+      ],
+      "id": "13b4dc91-fcfc-440f-a97e-c01cb6645c1c",
+      "name": "Wait1",
+      "webhookId": "fca29908-706b-453b-8568-ba6038481e0b"
+    },
+    {
+      "parameters": {
+        "amount": 1.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        140
+      ],
+      "id": "5ed72dac-8d79-4315-820d-ef8823e52b22",
+      "name": "Wait2",
+      "webhookId": "fca29908-706b-453b-8568-ba6038481e0b"
+    },
+    {
+      "parameters": {
+        "amount": 1.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        420,
+        140
+      ],
+      "id": "10d72026-76d3-4c6b-a53e-8cbb76511a4a",
+      "name": "Wait3",
+      "webhookId": "fca29908-706b-453b-8568-ba6038481e0b"
+    },
+    {
+      "parameters": {
+        "amount": 1.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        320
+      ],
+      "id": "ceff7acb-3a39-4556-b681-5fe9d161f708",
+      "name": "Wait4",
+      "webhookId": "fca29908-706b-453b-8568-ba6038481e0b"
+    },
+    {
+      "parameters": {
+        "amount": 1.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        420,
+        320
+      ],
+      "id": "5a5b96e2-b0b6-4a6c-8943-41eaa82d13ab",
+      "name": "Wait5",
+      "webhookId": "fca29908-706b-453b-8568-ba6038481e0b"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait4": {
+      "main": [
+        [
+          {
+            "node": "Wait5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e8379dea-9b0e-4c54-a84c-46896773c2b8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9f637cd6b720f767ffecf5b533c33bef57bac34e6abac97670035453c8165055"
+  },
+  "id": "kDIAb5CnBMw1RtQZ",
+  "tags": []
+}
