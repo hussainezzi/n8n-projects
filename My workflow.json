@@ -1,0 +1,137 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "School Field Trip Date Suggestion",
+        "formDescription": "we want you to poll on the date ,which is best for the children to go for a school trip ",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name of Child",
+              "placeholder": "your child's name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Name of the Parent",
+              "placeholder": "Your name"
+            },
+            {
+              "fieldLabel": "Date of the Trip",
+              "fieldType": "date",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3a714fb2-bc72-4118-9ad0-84a7983191f1",
+      "name": "On form submission",
+      "webhookId": "7e7123a9-d66f-49b9-b467-4c8413abc084"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "288f688e-c431-4322-a4f3-b639a4b8d007",
+              "leftValue": "={{ $json['Date of the Trip'] }}",
+              "rightValue": "={{ $now.plus(7,'days') }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "afterOrEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "42e4ac3c-9c7b-466e-87e3-9894b6d91437",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "U09EF1SLDDJ",
+          "mode": "list",
+          "cachedResultName": "hussainezzi03"
+        },
+        "text": "=From Parents who are asking for field Trip 7 days after today are these is :\nParent Name {{ $json['Name of the Parent'] }}\nChild Name {{ $json['Name of Child'] }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        416,
+        -96
+      ],
+      "id": "abd40c7c-4a39-4078-8edc-0efa7e5ed8f0",
+      "name": "Send a message",
+      "webhookId": "50bfcf44-9ea4-40e2-b872-73985c66fcab",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "blt1QK1CAadcowHs",
+          "name": "Slack account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4ee296d9-4bbb-4f86-9c26-41c4693254a9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "eca5b0eb5b96966b40e3d6d342a1e48a494f9dc35b262be99e0b6af013d4311d"
+  },
+  "id": "pHhImO14pZYHqDdw",
+  "tags": []
+}
