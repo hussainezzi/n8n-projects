@@ -1,0 +1,114 @@
+{
+  "name": "data handling",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a7d93bf9-596a-4c9a-9a7a-f9076543ec86",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1Zs9VEEpRkkcsU2R8m46fhuf7bvVR1IpPfpJTM99QooE",
+          "mode": "list",
+          "cachedResultName": "students marks",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Zs9VEEpRkkcsU2R8m46fhuf7bvVR1IpPfpJTM99QooE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Zs9VEEpRkkcsU2R8m46fhuf7bvVR1IpPfpJTM99QooE/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "31785bad-da3a-4db4-a9c7-abff314cc263",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JTc70WB9LJdbQB6U",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "U09EF1U16S0",
+          "mode": "list",
+          "cachedResultName": "hussainezzi01"
+        },
+        "text": "=hi admin , there is student called {{ $json.name }} , his physics marks are{{ $json.physics }} , his maths marks are {{ $json.maths }} , his biolgy marks are {{ $json.biology }} , kindly take this into your not ",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        416,
+        0
+      ],
+      "id": "5d900d51-8d75-46cc-af24-14064b980f05",
+      "name": "Send a message",
+      "webhookId": "86f034c9-2323-4e53-a791-c0b518245a26",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "blt1QK1CAadcowHs",
+          "name": "Slack account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4c466c91-b493-4dc0-8dbb-db15660a0358",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "eca5b0eb5b96966b40e3d6d342a1e48a494f9dc35b262be99e0b6af013d4311d"
+  },
+  "id": "njZ15qGQcnrafhpm",
+  "tags": []
+}
